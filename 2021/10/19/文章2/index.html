@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="自然语言处理入门》阅读笔记（4） 第七章+第八章+第九章 词性标注词性：单词的语法分类；词性的集合称为词性标注集 词性标注：句子中每个单词都预测词性标签">
+<meta property="og:type" content="article">
+<meta property="og:title" content="文章2">
+<meta property="og:url" content="http://example.com/2021/10/19/%E6%96%87%E7%AB%A02/index.html">
+<meta property="og:site_name" content="李东雷的博客">
+<meta property="og:description" content="自然语言处理入门》阅读笔记（4） 第七章+第八章+第九章 词性标注词性：单词的语法分类；词性的集合称为词性标注集 词性标注：句子中每个单词都预测词性标签">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-10-19T11:13:40.000Z">
+<meta property="article:modified_time" content="2021-10-19T11:15:40.823Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2021/10/19/%E6%96%87%E7%AB%A02/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>文章2 | 李东雷的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">李东雷的博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/10/19/%E6%96%87%E7%AB%A02/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="李东雷的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          文章2
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-10-19 19:13:40 / 修改时间：19:15:40" itemprop="dateCreated datePublished" datetime="2021-10-19T19:13:40+08:00">2021-10-19</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>自然语言处理入门》阅读笔记（4） 第七章+第八章+第九章</p>
+<p>词性标注<br>词性：单词的语法分类；词性的集合称为词性标注集</p>
+<p>词性标注：句子中每个单词都预测词性标签</p>
+<span id="more"></span>
+<p>汉语中常见一个单词有多个词性（称为兼类词）<br>OOV是任何nlp的难题——如何预测OOV的词性（OOV：未登录词）<br>词性标注视为中文分词的后续任务</p>
+<p>将标签与词性标签联合作为复合式标签：</p>
+<p>image-20211014111109535</p>
+<p>同时进行多个任务的模型：联合模型</p>
+<p>语料库必须同时标注分词和词性——语料库少<br>联合模型的特征数目是独立模型的数十倍<br>语料库<br>语料库中的句子，都可转为如下格式（PKU格式）：</p>
+<p>image-20211014111331774</p>
+<p>人民日报语料库与PKU标注集（其中，名动词的定义较为含糊）</p>
+<p>image-20211014111605016</p>
+<p>国家语委语料库与863标注集</p>
+<p>image-20211014111546797</p>
+<p>《诛仙》语料库与CTB标注集</p>
+<p>image-20211014111700335</p>
+<p>序列标注模型用于词性标注<br>HanLP中的POSTagger接口：HMM、感知机、CRF</p>
+<p>基于HMM的词性标注：</p>
+<p>image-20211014111907911</p>
+<p>model：任意的一阶或二阶HMM<br>vocabulary：将单词映射为id<br>tagSet：存储词性标注集<br>HMM可以应对兼类词问题，但无法应对OOV<br>基于感知机的词性标注：</p>
+<p>image-20211014112053870</p>
+<p>感知机词性标注器的特征模板：（为当前单词，为当前单词的词性）</p>
+<p>image-20211014113029497</p>
+<p>前三个状态特征为词语级别，捕捉上下文信息，其他为字符级别，推测OOV的词性<br>成功识别OOV的词性</p>
+<p>基于CRF的词性标注：</p>
+<p>image-20211014113149683</p>
+<p>词性标注评估：精确率、召回率、综合</p>
+<p>可对每一个标签都计算一遍，或者退化为相等的准确率<br>自定义词性<br>将自己关注的词语和自定义的词性，以词典的形式挂载到HanLP<br>标注一份语料库，训练统计模型<br>命名实体识别<br>词性标注仅作用于单个单词</p>
+<p>命名实体：一些描述实体的词汇，如人名、地名、组织机构名、专业术语等</p>
+<p>数量无穷<br>构词灵活<br>类别模糊（命名实体的区别模糊，如地名和机构名）<br>命名实体识别：识别句子中命名实体的边界和类别——统计为主，规则为辅</p>
+<p>规则性较强的命名实体（网址、ISBN等），通过正则表达式处理，未匹配到的片段交给统计模型<br>较短的命名实体（人名），通过分词确定边界，通过词性标注确定类别<br>对于一些大颗粒度的语料库，分词+词性标注可以代替命名实体识别<br>对命名实体边界外的单词，统一标注为O（outside）<br>基于规则的命名实体识别<br>用于不精确地识别音译人名、日本人名，可用于应付语料匮乏地领域</p>
+<p>基于规则的音译人名识别</p>
+<p>音译人名用字较为固定</p>
+<p>image-20211014154756758</p>
+<p>对于待识别的文本，若音译字符连续出现，则认为来自一个音译人名</p>
+<p>音译人名较长，不易产生歧义，但不能全部收录——一套启发式规则：粗分结果中，如果某词语的备选词性含有音译人名，则从此词语向右扫描，遇到音译人名词库中的词语，则合并，否则终止扫描</p>
+<p>例如：粗分结果如下</p>
+<p>image-20211014154952366</p>
+<p>由于”勒“在人名词库中，合并结果为：</p>
+<p>image-20211014155034122</p>
+<p>此过程无法识别未知的人名片段，但能够查到较长、构词常规的音译人名</p>
+<p>基于规则的日本人名识别</p>
+<p>在文本中匹配日本人名的姓氏和名字<br>将连续的姓氏和名字合并为日本人名，标注为nrj；存在一些黑名单规则，以区别特殊情况，如”龟山公园“<br>基于规则的数词英文识别</p>
+<p>将相同类型的连续字符分别合并<br>获取每个字符的类型——包括单字节、分隔符（标点符号）、中文字符、字母、数字、序号等——将类型相同的字符合并，利用类型确定词性<br>命名实体识别语料库<br>1998年《人民日报》语料库</p>
+<p>只关注人名、地名、机构名，则PKU语料可视为命名实体识别语料库，其中nr为人名，ns为地名，nt为机构名</p>
+<p>image-20211014160106863</p>
+<p>其余复合词视为普通词汇</p>
+<p>微软命名实体识别语料库（MSRA-NE）</p>
+<p>实体类型包括：专有名词NAMEX，时间表达式TIMEX，数字表达式NUMEX，度量表达式MEASUREX，地址表达式ADDREX 五个大类及30个下属子类<br>除命名实体外的词语没有标注词性<br>原始数据为xml格式<br>基于层叠HMM的角色标注框架<br>角色标注框架类似日本人名的思路：</p>
+<p>为构成命名实体的短词语打标签<br>标签序列满足某种模式，则识别为某个命名实体<br>根据HMM的预测进行标注<br>角色标注模块的输入是分词模块的输出<br>角色标注模块于分词模块均使用HMM，因此称为层叠HMM模型<br>基于角色标注的中国人名识别</p>
+<p>举例：分词结果为”王国/n，维和/vn，服务员/nnt“，其中”王国维“的前半部分和后半部分是字符串在构成中国人名时充当的角色，确定粗分结果中各个词语的角色后，即可识别中国人名</p>
+<p>定义中国人名的构成角色表如下：</p>
+<p>image-20211014161207616</p>
+<p>根据上表编写规则，将词性标注语料转换为角色标注语料，训练HMM，利用HMM进行标注，最后通过模式匹配识别人名</p>
+<p>基于角色标注的地名识别</p>
+<p>原理类似，但需要定义新的角色标注集</p>
+<p>image-20211014162039385</p>
+<p>基于角色标注的机构名识别</p>
+<p>同上，但预测环节中由于机构名通常含有其他命名实体，需要进行第三次识别——层叠HMM的第一层用于得到粗略的分词结果，第二层识别其他实体，第三层识别机构名</p>
+<p>角色标注集如下：</p>
+<p>image-20211014162258647</p>
+<p>此框架没有考虑OOV问题，标注集需要根据具体问题手工编制，不够灵活，普通语料到角色标注语料的转换也需要专门设计</p>
+<p>基于序列标注的命名实体识别<br>命名实体识别可视为分词+词性标注：实体边界通过确定，类别通过附加类别的标签如B-nt确定</p>
+<p>将通用语料库转换为序列标注命名实体识别语料库：</p>
+<p>image-20211014162749200</p>
+<p>输入变量分别为词语和词性，由分词模块和词性标注模块给出<br>输出变量为复合型标签，由和实体类别标签组成<br>组合策略：</p>
+<p>组合出S-nr之类的单个单词命名实体，提供用户改写词性标签的计回<br>将单个单词的命名实体标注为S，具体实体类型由词性标签决定<br>特征模板：（对于HMM，只能使用特征，两个特征）</p>
+<p>image-20211014163233591</p>
+<p>基于HMM序列标注的命名实体识别：</p>
+<p>输入分别为单词和词性序列，输出B-nt之类的命名实体识别标签</p>
+<p>image-20211014163341945</p>
+<p>根据B、M、E合并整个nt，以识别出”华北电力公司“</p>
+<p>无法识别的原因：</p>
+<p>语料库中，短语a没有作为实体的一部分出现过<br>HMM无法利用词性特征<br>基于感知机序列标注的命名实体识别</p>
+<p>基于CRF序列标注的命名实体识别</p>
+<p>自定义领域命名实体识别<br>以上是通用领域上的语料库，无法识别专用领域中的命名实体<br>收集文本，作为标注语料库的原料——生语料<br>可在HanLP的标注基础上校正——先输出标注结果，然后定义新的标签，人工更新标注结果<br>后续过程同上<br>信息抽取<br>从非结构化文本中提取结构化信息的技术——基于规则的正则匹配、有监督学习、无监督学习<br>本章使用无监督学习的方法<br>新词提取<br>新词：词典外的词，即未登录词OOV</p>
+<p>新词提取：1）从生语料提取词语，无论新旧；2）用词典过滤已有的词语，得到新词——关键在于1），即给一段文本，随机选取一个片段，如何判断这个片段是否为一个词</p>
+<p>如果此片段左右搭配丰富，片段内部成分搭配固定，可认为这是一个词<br>片段左右的丰富程度，用信息熵衡量；内部搭配的固定程度，用子序列的互信息衡量<br>信息熵：某消息含有的信息量</p>
+<p>离散型随机变量X的信息熵：</p>
+<p>image-20211014164915408</p>
+<p>给定字符串S，若X定义为该字符串左边可能出现的字符（左邻字），则H(X)为S的左信息熵，同理得到右信息熵</p>
+<p>例如：</p>
+<p>image-20211014165130174</p>
+<p>蝴蝶的左邻字为：只、些</p>
+<p>左右信息熵越大，说明搭配越丰富</p>
+<p>互信息：两个离散型随机变量的相关程度</p>
+<p>image-20211014165231766</p>
+<p>互信息越大，两个随机变量关联越密切，即同时发生的可能性越大</p>
+<p>随机变量X代表一个子串，Y代表S剩余部分</p>
+<p>image-20211014165413024</p>
+<p>关键词提取<br>只需要一个文档即可得到关键词：单文档算法（词频统计、TextRank）；需要多个文档得到关键词：多文档算法（TF-IDF，容易受到噪音干扰）</p>
+<p>词频统计：</p>
+<p>认为关键词会在文章中反复出现——但根据齐夫定律，词频高的还会包括一些标点符号和助词<br>词频统计前通常需要过滤停用词<br>流程：分词、过滤停用词、按词频取前n个（通常使用最大堆算法获得m个元素中前n大的元素，复杂度为O(mlogn)）<br>TF-IDF（词频-倒排文档频次）：</p>
+<p>综合考虑了词语的稀有程度：一个词语的重要度正比于其在文本中的频次，反比于包含它的文档数目，即越多文档包含它，这个词越宽泛，无法体现文档特色</p>
+<p>基本公式为：</p>
+<p>image-20211014170539536</p>
+<p>t：单词<br>d：文档<br>TF(t, d)：t在d中出现频次<br>DF(t)：包含t的文档数目<br>常用变换：加一平滑、取对数等</p>
+<p>同样涉及分词、停用词过滤</p>
+<p>需要大型语料库和较大内存</p>
+<p>TextRank：</p>
+<p>是PageRank在文本上的应用——PageRank：排序网页的随机算法</p>
+<p>将互联网视为有向图，网页为节点，节点之间超链接为有向边，初始化时每个节点权重均为1，迭代的方式更新节点权重，公式如下：</p>
+<p>image-20211014170931995</p>
+<p>d：常数因子，模拟用户点击链接后跳出当前网站的概率<br>In(V)：链接到当前节点的节点集合<br>Out(V)：从此节点出发链接到的节点集合<br>单词被视为节点，每个单词的外链来自前后固定大小的窗口内单词</p>
+<p>image-20211014171153347</p>
+<p>窗口半径为2，则”处理“的外链为周围四个单词<br>窗口内词语用于解释中心词，相当于给中心词投票，每一票权重被窗口词所有投出去的票平分<br>中心词左右搭配越多，则给自己做解释的词越多——类似于互信息<br>单词频次越高，被投票的机会越多——类似于词频统计<br>短语提取<br>新词提取推广到短语提取——字符替换为单词，字符串替换为单词列表即可<br>关键句提取<br>将PageRank应用到句子颗粒度上：BM25衡量句子的相似度，改进链接的权重计算，此时相似的句子会有更高的投票</p>
+<p>BM25：</p>
+<p>定义Q为查询语句，有单词组成，D为被检索文档，Q和D的相似度BM25定义为：</p>
+<p>image-20211014173514313</p>
+<p>IDF和TF的定义同TF-IDF部分<br>为两个常数：前者越大，TF对文档得分的正面影响越大；后者越大，文档长度对得分的负面影响越大<br>avgDL为所有文档的平均长度<br>BM25对查询语句中所有单词的IDF加权求和<br>TextRank：</p>
+<p>将一个句子视为查询语句，相邻句子视为待查询文档，得到相似度，相似度作为PageRank中链接的权重：</p>
+<p>image-20211014173856554</p>
+<p>为文档中第i个句子的得分<br>迭代后得到所有句子得分，排序输出前N个句子，即为关键句<br>不再考虑窗口问题，认为所有句子都是相邻的：<br>句子几乎不重复<br>文档中句子数量远小于单词的数量<br>相关文章推荐<br>transformer 原理<br>transformer 模型原理介绍</p>
+<p>Improving Language Understanding by Generative Pre-Training<br>2018年《Improving Language Understanding by Generative Pre-Training》阅读笔记（GPT）</p>
+<p>BERT Pre-training of Deep Bidirectional Transformers for Language Understanding<br>2019年《BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding》论文阅读笔记</p>
+<p>Transformer-XL：Attentive Language Models Beyond a Fixed-Length Context<br>2019年《Transformer-XL: Attentive Language Models Beyond a Fixed-Length Context》论文阅读笔记——基于2018年《Character-Level Language Modeling with Deeper Self-Attention》（vanilla Transformer）</p>
+<p>XLNet：Generalized Autoregressive Pretraining for Language Understanding<br>2019年《XLNet: Generalized Autoregressive Pretraining for Language Understanding》论文阅读笔记——基于2019年《Transformer-XL: Attentive Language Models Beyond a Fixed-Length Context》</p>
+<p>打赏<br>本文作者： Thomas-Li<br>本文链接： <a target="_blank" rel="noopener" href="https://thomas-li-sjtu.github.io/2021/10/14/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E5%85%A5%E9%97%A8-4/">https://thomas-li-sjtu.github.io/2021/10/14/自然语言处理入门-4/</a><br>版权声明： 本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/10/19/%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0/" rel="prev" title="测试文章">
+      <i class="fa fa-chevron-left"></i> 测试文章
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
